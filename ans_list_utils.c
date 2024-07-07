@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 08:02:07 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/07 11:31:49 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:05:24 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,49 @@ void	print_rules(t_ans_list *ans)
 	free_rules(&ans);
 }
 
+static int	optimize_pair(t_ans_list **optimized, t_ans_list **current)
+{
+	const char	*a;
+	const char	*b;
+
+	a = (*current)->ans_char;
+	b = (*current)->next->ans_char;
+
+	if ((ft_strncmp(a, "sa", 2) == 0 && ft_strncmp(b, "sb", 2) == 0)
+		|| (ft_strncmp(a, "sb", 2) == 0 && ft_strncmp(b, "sa", 2) == 0))
+		return (add_rule(optimized, "ss"), 1);
+	if ((ft_strncmp(a, "ra", 2) == 0 && ft_strncmp(b, "rb", 2) == 0)
+		|| (ft_strncmp(a, "rb", 2) == 0 && ft_strncmp(b, "ra", 2) == 0))
+		return (add_rule(optimized, "rr"), 1);
+	if ((ft_strncmp(a, "rra", 3) == 0 && ft_strncmp(b, "rrb", 3) == 0)
+		|| (ft_strncmp(a, "rrb", 3) == 0 && ft_strncmp(b, "rra", 3) == 0))
+		return (add_rule(optimized, "rrr"), 1);
+	if ((ft_strncmp(a, "pa", 2) == 0 && ft_strncmp(b, "pb", 2) == 0)
+		|| (ft_strncmp(a, "pb", 2) == 0 && ft_strncmp(b, "pa", 2) == 0))
+		return (1);
+	return (0);
+}
+
 t_ans_list	*optimize_rules(t_ans_list *ans)
 {
-	ans = optimize_ss(ans);
-	ans = optimize_rr(ans);
-	ans = optimize_rrr(ans);
-	ans = optimize_pp(ans);
-	return (ans);
+	t_ans_list	*optimized;
+	t_ans_list	*current;
+
+	optimized = NULL;
+	current = ans;
+	while (current && current->next)
+	{
+		if (optimize_pair(&optimized, &current))
+			current = current->next->next;
+		else
+		{
+			add_rule(&optimized, current->ans_char);
+			current = current->next;
+		}
+	}
+	if (current)
+		add_rule(&optimized, current->ans_char);
+	free_rules(&ans);
+	return (optimized);
 }
+

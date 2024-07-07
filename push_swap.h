@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 06:31:56 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/07 11:31:01 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/07 12:05:21 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,5 @@ void		print_rules(t_ans_list *ans);
 long		get_median(t_dlst *stack, int arg_size);
 long		get_min_id(t_dlst *stack);
 t_ans_list	*optimize_rules(t_ans_list *ans);
-t_ans_list	*optimize_ss(t_ans_list *ans);
-t_ans_list	*optimize_rr(t_ans_list *ans);
-t_ans_list	*optimize_rrr(t_ans_list *ans);
-t_ans_list	*optimize_pp(t_ans_list *ans);
 void		free_rules(t_ans_list **ans);
 #endif
