@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 01:46:39 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/06 16:06:14 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/07 11:31:34 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_ans_list	*optimize_ss(t_ans_list *ans)
 	}
 	if (current)
 		add_rule(&optimized, current->ans_char);
-	free_rules(ans);
+	free_rules(&ans);
 	return (optimized);
 }
 
@@ -66,7 +66,7 @@ t_ans_list	*optimize_rr(t_ans_list *ans)
 	}
 	if (current)
 		add_rule(&optimized, current->ans_char);
-	free_rules(ans);
+	free_rules(&ans);
 	return (optimized);
 }
 
@@ -95,7 +95,7 @@ t_ans_list	*optimize_rrr(t_ans_list *ans)
 	}
 	if (current)
 		add_rule(&optimized, current->ans_char);
-	free_rules(ans);
+	free_rules(&ans);
 	return (optimized);
 }
 
@@ -121,6 +121,6 @@ t_ans_list	*optimize_pp(t_ans_list *ans)
 	}
 	if (current)
 		add_rule(&optimized, current->ans_char);
-	free_rules(ans);
+	free_rules(&ans);
 	return (optimized);
 }
