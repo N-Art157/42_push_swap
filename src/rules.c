@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:31:50 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/06 17:55:07 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:58:29 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	push(t_dlst *stack_from, t_dlst *stack_to, int type, t_ans_list **ans)
 	return (1);
 }
 
-long	ft_atol(char	*str)
+long	ft_atol(char	*str, bool *flag)
 {
 	long	n;
 	int		negative;
@@ -132,10 +132,10 @@ long	ft_atol(char	*str)
 	{
 		if ((n > LONG_MAX / 10 || (n == LONG_MAX / 10
 					&& (*str - '0') > 7)) && negative == 1)
-			return (-1);
+			flag = false;
 		else if ((n > LONG_MAX / 10 || (n == LONG_MAX / 10
 					&& (*str - '0') > 8)) && negative == -1)
-			return (0);
+			flag = false;
 		n = n * 10 + (*str++ - 48);
 	}
 	return (n * negative);

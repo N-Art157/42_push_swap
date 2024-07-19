@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:04:24 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/19 15:55:19 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:11:59 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,14 @@ int	*argv_to_i(int argc, char **argv, int *arg_size)
 		*arg_size += 1;
 	temp = malloc(sizeof(int) * (*arg_size));
 	if (!temp)
-		ft_free(split, "Error");
+		ft_free(split, "Error", argc);
 	i = 0;
 	while (split[i])
 	{
 		temp[i] = ft_atoi(split[i]);
 		i++;
 	}
-	if (argc == 2)
-		ft_free(split, NULL);
+	ft_free(split, NULL, argc);
 	return (temp);
 }
 

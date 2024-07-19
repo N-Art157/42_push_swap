@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 06:31:56 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/19 16:29:09 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:11:42 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <stdio.h>
+# include <stdbool.h>
 
 # define BUFFER_SIZE 512
 
@@ -40,14 +41,14 @@ typedef struct s_infos{
 int			ft_issorted(t_dlst *stack);
 void		arg_check(int argc, char **argv);
 void		free_stack(t_dlst *stack);
-void		ft_free(char **args, char *s);
+void		ft_free(char **args, char *s, int argc);
 void		ft_free_and_error(t_dlst *stack_a, t_dlst *stack_b, char *s);
 int			medium_sort(t_dlst *a, t_dlst *b, int size, t_ans_list **ans);
 int			swap(t_dlst *stack, int type, t_ans_list **ans);
 int			rotate(t_dlst *stack, int type, t_ans_list **ans);
 int			reverse_rotate(t_dlst *stack, int type, t_ans_list **ans);
 int			push(t_dlst *from, t_dlst *to, int type, t_ans_list **ans);
-long		ft_atol(char	*str);
+long		ft_atol(char	*str, bool	*flag);
 int			*argv_to_i(int argc, char **argv, int *arg_size);
 t_dlst		*init_stcak_a(int argc, char **argv, t_dlst *a, int *arg_size);
 void		initialize(t_dlst **stack_a, t_dlst **stack_b);

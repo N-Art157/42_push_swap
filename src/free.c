@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 12:51:13 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/07 11:32:27 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:10:11 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ void	free_stack(t_dlst *stack)
 	}
 }
 
-void	ft_free(char **args, char *s)
+void	ft_free(char **args, char *s, int argc)
 {
 	int	i;
 
 	i = 0;
-	while (args[i])
+	if (argc == 2)
 	{
-		free(args[i]);
-		i++;
+		while (args[i])
+		{
+			free(args[i]);
+			i++;
+		}
+		free(args);
 	}
-	free(args);
 	if (s)
 	{
 		ft_putendl_fd(s, 2);

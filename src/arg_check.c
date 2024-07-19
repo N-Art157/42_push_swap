@@ -6,7 +6,7 @@
 /*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 13:13:42 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/19 16:07:32 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:23:46 by anakagaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ static char	**set_args(int argc, char **argv)
 	int		i;
 
 	if (argc == 2)
+	{
 		split = ft_split(argv[1], ' ');
+		if (!split)
+			ft_free(NULL, "Error", 0);
+	}
 	else
 	{
 		argv++;
@@ -43,12 +47,7 @@ static char	**set_args(int argc, char **argv)
 	while (split[i])
 	{
 		if (split[i][0] == '\0')
-		{
-			if (argc == 2)
-				ft_free(split, "Error");
-			else
-				ft_free_and_error(NULL, NULL, "Error");
-		}
+			ft_free(split, "Error", argc);
 		i++;
 	}
 	return (split);
@@ -76,10 +75,15 @@ static int	ft_isnum(char *s)
 
 static int	ft_isduplicated(char **argv, int arg, int i)
 {
+	bool	flag;
+
+	flag = true;
 	i++;
 	while (argv[i])
 	{
-		if (ft_atol(argv[i]) == arg)
+		if (ft_atol(argv[i], &flag) == arg)
+			return (0);
+		if (flag == false)
 			return (0);
 		i++;
 	}
@@ -94,22 +98,18 @@ void	arg_check(int argc, char **argv)
 
 	i = 0;
 	args = set_args(argc, argv);
-	while (args[i])
-		i++;
-	if (i == 0)
-		ft_free(args, "Error");
-	i = 0;
+	if (args[i] == NULL)
+		ft_free(args, "Error", argc);
 	while (args[i])
 	{
-		temp = ft_atol(args[i]);
+		temp = ft_atol(args[i], NULL);
 		if (!ft_isnum(args[i]))
-			ft_free_and_error(NULL, NULL, "Error");
+			ft_free(args, "Error", argc);
 		if (temp > INT_MAX || INT_MIN > temp)
-			ft_free_and_error(NULL, NULL, "Error");
+			ft_free(args, "Error", argc);
 		if (!ft_isduplicated(args, temp, i))
-			ft_free_and_error(NULL, NULL, "Error");
+			ft_free(args, "Error", argc);
 		i++;
 	}
-	if (argc == 2)
-		ft_free(args, NULL);
+	ft_free(args, NULL, argc);
 }
