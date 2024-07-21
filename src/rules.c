@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rules.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:31:50 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/19 18:58:29 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/20 00:28:06 by nakagawashi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,14 @@ long	ft_atol(char	*str, bool *flag)
 			negative = -1;
 		str++;
 	}
-	while ('0' <= *str && *str <= '9')
+	while ('0' <= *str && *str <= '9' && flag)
 	{
 		if ((n > LONG_MAX / 10 || (n == LONG_MAX / 10
 					&& (*str - '0') > 7)) && negative == 1)
-			flag = false;
+			*flag = false;
 		else if ((n > LONG_MAX / 10 || (n == LONG_MAX / 10
 					&& (*str - '0') > 8)) && negative == -1)
-			flag = false;
+			*flag = false;
 		n = n * 10 + (*str++ - 48);
 	}
 	return (n * negative);

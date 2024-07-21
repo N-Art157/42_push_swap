@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 06:31:56 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/19 20:11:42 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/20 02:48:57 by nakagawashi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,26 @@
 
 # define BUFFER_SIZE 512
 
-typedef struct t_dlst{
+typedef struct t_dlst
+{
 	long			value;
 	long			index;
 	struct t_dlst	*prev;
 	struct t_dlst	*next;
-}t_dlst;
+}	t_dlst;
 
 typedef struct s_ans_list
 {
 	char				ans_char[4];
 	struct s_ans_list	*next;
-}t_ans_list;
+}	t_ans_list;
 
-typedef struct s_infos{
+typedef struct s_infos
+{
 	t_dlst		*stack_a;
 	t_dlst		*stack_b;
 	t_ans_list	*ans;
-}t_infos;
+}	t_infos;
 
 int			ft_issorted(t_dlst *stack);
 void		arg_check(int argc, char **argv);

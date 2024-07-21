@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 13:50:51 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/06 16:56:58 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/20 02:39:10 by nakagawashi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,7 @@ int	partition_b(t_infos *infos, int arg_size, int *j)
 	while (arg_size)
 	{
 		if (infos->stack_b->next->index == min_id)
-		{
 			n = do_pr(infos, &min_id, n);
-		}
 		else if (infos->stack_b -> next -> index > median)
 		{
 			push(infos->stack_b, infos->stack_a, 0, &infos->ans);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 12:51:13 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/19 20:10:11 by anakagaw         ###   ########.fr       */
+/*   Created: 2024/07/19 23:36:10 by nakagawashi       #+#    #+#             */
+/*   Updated: 2024/07/19 23:37:17 by nakagawashi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_stack(t_dlst *stack)
 		{
 			temp = stack->next;
 			while (temp != stack)
-			{	
+			{
 				next = temp->next;
 				free(temp);
 				temp = next;

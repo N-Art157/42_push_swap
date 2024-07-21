@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anakagaw <anakagaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nakagawashinta <nakagawashinta@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 13:13:42 by nakagawashi       #+#    #+#             */
-/*   Updated: 2024/07/19 20:23:46 by anakagaw         ###   ########.fr       */
+/*   Updated: 2024/07/20 00:48:26 by nakagawashi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static char	**set_args(int argc, char **argv)
 
 static int	ft_isnum(char *s)
 {
-	int	i;
-
+	int		i;
+	
 	i = 0;
 	if (s[0] == '-')
 		i = 1;
@@ -95,14 +95,18 @@ void	arg_check(int argc, char **argv)
 	char	**args;
 	int		i;
 	long	temp;
+	bool	flag;
 
 	i = 0;
+	flag = true;
 	args = set_args(argc, argv);
 	if (args[i] == NULL)
 		ft_free(args, "Error", argc);
 	while (args[i])
 	{
-		temp = ft_atol(args[i], NULL);
+		temp = ft_atol(args[i], &flag);
+		if (flag == false)
+			ft_free(args, "Error", argc);
 		if (!ft_isnum(args[i]))
 			ft_free(args, "Error", argc);
 		if (temp > INT_MAX || INT_MIN > temp)
